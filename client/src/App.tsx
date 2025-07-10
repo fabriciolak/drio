@@ -10,7 +10,7 @@ function App() {
 
   async function sendRequest() {
     try {
-      const req = await fetch(`${SERVER_URL}/hello`)
+      const req = await fetch(`${SERVER_URL}/api/v1/health`)
       const res: ApiResponse = await req.json()
       setData(res)
     } catch (error) {
@@ -38,8 +38,9 @@ function App() {
         {data && (
           <pre className='response'>
             <code>
+              uptime: {data.uptime}<br />
               Message: {data.message}<br />
-              Success: {data.success}
+              Date: {data.date}
             </code>
           </pre>
         )}

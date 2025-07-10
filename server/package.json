@@ -4,14 +4,18 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "build": "tsup ./src",
+    "build:tsc": "tsc",
     "dev": "bun --watch run src/index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/express": "^5.0.3",
-    "typescript": "^5",
-    "shared": "workspace:*"
+    "dotenv": "^17.2.0",
+    "shared": "workspace:*",
+    "tsup": "^8.5.0",
+    "typescript": "^5"
   },
   "private": true,
   "dependencies": {

@@ -1,4 +1,5 @@
 export type ApiResponse = {
+  uptime: number;
   message: string;
-  success: true;
+  date: string;
 }
