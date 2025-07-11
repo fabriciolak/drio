@@ -16,8 +16,13 @@ if (process.env.NODE_ENV !== 'development') {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
 }
 
+if (process.env.NODE_ENV !== 'production') {
+  app.use(cors());
+}
+
+
 // Rotas da API
-app.use(cors());
+
 app.use(express.json());
 app.use('/api', routes);
 

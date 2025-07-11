@@ -3,7 +3,7 @@ import logo from './assets/logo.png'
 import type { ApiResponse } from 'shared'
 import './App.css'
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3000"
+const SERVER_URL = import.meta.env.VITE_SERVER_URL
 
 console.log(SERVER_URL)
 
