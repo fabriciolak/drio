@@ -10,7 +10,7 @@ function App() {
 
   async function sendRequest() {
     try {
-      const req = await fetch(`/api`)
+      const req = await fetch(SERVER_URL`/api`)
       const res: ApiResponse = await req.json()
       setData(res)
     } catch (error) {
@@ -27,7 +27,7 @@ function App() {
       </div>
       <h1>Drio</h1>
       <h2>Bun + Express + Vite + React</h2>
-      <p>A typesafe fullstack monorepo</p>
+      <p>A typesafe monorepo</p>
       <div className="card">
         <div className='button-container'>
           <button onClick={sendRequest}>
