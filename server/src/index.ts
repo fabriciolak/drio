@@ -1,25 +1,35 @@
-import dotenv from 'dotenv'
-import express from 'express';
-import cors from 'cors';
-import routes from './routes';
-
-dotenv.config()
-
-console.log(process.env.PORT)
-
-const app = express();
-const PORT = process.env.PORT || 5000
-
-const startTime = performance.now();
-
+import { Hono } from "hono";
+import { cors } from "hono/cors";
+import { serveStatic } from "hono/bun";
+import { type ApiResponse} from 'shared/types'
+import path from 'path'
+ 
+const app = new Hono(); 
 app.use(cors());
-app.use(express.json());
+ 
+app.get("/api", (c) => {
+  const data: ApiResponse = {
+    date: new Date().toISOString(),
+    message: 'OK',
+    uptime: process.uptime()
+  }
 
-// /api/v1/
-app.use('/api/', routes);
-
-app.listen(PORT, () => {
-  const duration = Math.round(performance.now() - startTime);
-  console.log(`\nSERVER ready in ${duration} ms\n`);
-  console.log(`➜  Local:   http://localhost:${PORT}/\n`);
+  return c.json(data)
 });
+
+// Serve static files for everything else
+app.use("*", serveStatic({ root: path.join(__dirname, '../../', 'client') }));
+ 
+app.get("*", async (c, next) => {
+  return serveStatic({ root: path.join(__dirname, '../..', 'client/dist'), path: "index.html" })(c, next);
+});
+
+ 
+const port = parseInt(process.env.PORT || "3000");
+ 
+export default {
+  port,
+  fetch: app.fetch,
+};
+ 
+console.log(`drio server running on port ${port}`);

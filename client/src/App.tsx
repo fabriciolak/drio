@@ -10,7 +10,7 @@ function App() {
 
   async function sendRequest() {
     try {
-      const req = await fetch(`${SERVER_URL}/api/v1/health`)
+      const req = await fetch(`/api`)
       const res: ApiResponse = await req.json()
       setData(res)
     } catch (error) {
