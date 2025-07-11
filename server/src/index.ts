@@ -12,8 +12,6 @@ const PORT = process.env.PORT || 3000;
 
 const startTime = performance.now();
 
-console.log(process.env.NODE_ENV)
-
 if (process.env.NODE_ENV !== 'development') {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
 }
