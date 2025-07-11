@@ -5,6 +5,8 @@ import './App.css'
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3000"
 
+console.log(SERVER_URL)
+
 function App() {
   const [data, setData] = useState<ApiResponse | undefined>()
 
